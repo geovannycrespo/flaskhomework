@@ -1,0 +1,101 @@
+/* NavbBar with FlexBox */
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Montserrate', 'san-serif';
+    line-height: 1.6;
+    margin: 0;
+    min-height: 100vh;
+}
+
+ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+
+}
+
+a{
+    text-decoration: none;
+}
+
+.logo{
+    margin: 0;
+    font-size: 1.45em;
+}
+
+.main-nav{
+    margin-top: 5px;
+}
+
+.logo a,
+.main-nav a{
+    padding: 10px 15px;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+}
+.main-nav a{
+    color: #34495e;
+    font-size: .99em;
+}
+
+.main-nav a:hover{
+    color: #718daa;
+}
+
+.header-nav{
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border: 1px solid #a2a2a2;
+    background-color: #f4f4f4;
+    box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+    border-radius: 5px;
+}
+
+/* Media queries for Nav */
+@media(min-width:796px){
+    .header-nav,
+    .main-nav{
+        display: flex;
+    }
+    .header-nav{
+        flex-direction: column;
+        align-items: center;
+        .header-nav{
+            widows: 80%;
+            margin: 0 auto;
+            max-width: 1150px;
+        }
+    }
+
+}
+
+@media (min-width: 1025px){
+    .header-nav{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+.banner{
+    height: 95vh;
+    background-image: linear-gradient(to right bottom, rgba(30,115,172,0.7), rgba(142,57,153,0.6)), url(https://images.unsplash.com/photo-1561149877-84d268ba65b8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=900&q=60);
+    background-size: cover;
+    background-position: 35% 50%;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 80vh, 0 100%);
+    position: relative;
+
+
+}
+
+.header-text{
+    display: flex;
+    justify-content: center;
+    padding-top: 20%;
+    left: 20rem;
+    top: 10rem;
+    color: white;
