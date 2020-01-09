@@ -1,3 +1,33 @@
 {% extends 'base.html' %}
 {% block content %}
+<header class="banner">
+    <h1 class= "header-text">
+         
+        {% if current_user.is_authenticated %}
+            {{ current_user.username }}
+        {% else %}
+        
+        {% endif %}
+        Phonebook
+        </h1>
+
+</header>
+
+<!--Displaying posts from Database-->
+
+{% if current_user.is_authenticated %}
+    {% for post in post %}
+        {% if post %}
+                <h2>{{ post.title }}</h2>
+                <p></p>
+            {% else %}
+                <h2>No Posts to show!</h2>
+        {% endif %}
+
+    {% endfor %}
+
+{% else %}
+    <h1>Nothing to show here...</h1>
+{% endif %}
+
 {% endblock content %}

@@ -1,12 +1,12 @@
 from flaskavengerhomework import app, db 
 from flask import render_template, redirect, request, url_for
-from flaskavengerhomework.forms import SignupForm,LoginForm
+from flaskavengerhomework.forms import SignupForm,LoginForm,PostForm
 
 from werkzeug.security import check_password_hash
 
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, login_required
 
-from flaskavengerhomework.models import User
+from flaskavengerhomework.models import User,Post
 
 #home route
 @app.route("/")
@@ -25,7 +25,7 @@ def signup():
         phonenumber = signupForm.phonenumber.data
         print(avengername,phonenumber,address)
 
-        user = User(username,email,password)
+        user = User(avengername,address,phonenumber)
         db.session.add(user) # Start Communication with database
         db.session.commit() # Save Data to database and close session
     
@@ -46,3 +46,19 @@ def login():
         else:
             print("Not Valid Method")
     return render_template("login.html", loginform = loginForm)
+
+@app.route("/post", methods = ["GET", "POST"])
+@login_required
+def post():
+    postForm = PostForm()
+    title = postForm.title.data
+    content = postForm.content.data
+    user_id = current_user.id 
+    print(title,content,user_id)
+
+    # saving post data to database
+    post = Post(title = title, content = content, user_id = user_id)
+    db.session.add(post)
+    db.session.commit()
+
+    return render_template('create_post.html', postform = postForm)
